@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<items>
+    <item type="settings"  inputWidth="220"  position="label-left"
+          labelWidth="90"/>
+    <item type="label" label="College details"/>
+    <item type="input" label="Name" name="collegeName" offsetLeft="15" required="true"/>
+    <item type="select" label="Years" offsetLeft="15" name="years" required="true">
+       <option text="1" value="1"/>
+       <option text="2" value="2" />
+       <option text="3" value="3" />
+       <option text="4" value="4" />
+       <option text="5" value="5" />
+       <option text="6" value="6" />
+   </item>
+  
+   <item type="button" value="Submit" offsetTop="15" offsetLeft="230"/>
+</items>

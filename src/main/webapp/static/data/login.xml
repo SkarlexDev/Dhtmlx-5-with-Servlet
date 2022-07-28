@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+   <item type="fieldset" name="data" label="Login">
+       <item type="input" name="userName" label="Username" position="label-top" required="true"/>
+       <item type="password" name="password" label="Password" position="label-top" required="true"/>
+       <item id="Submit" type="button" value="Submit"/>
+   </item>
+</items>

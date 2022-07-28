@@ -1,0 +1,19 @@
+#timeTableView {
+	width: 100%;
+	border-spacing: 0px;
+	text-align: center;
+}
+
+#timeTableView tr, #timeTableView tr td, th {
+	border: 1px solid;
+}
+
+#timeTableView tr th {
+	background-color: #c0c0c0;
+}
+
+#timeTableView tr td:hover {
+	background-color: black;
+	color: white;
+	transition: 0.3s;
+}

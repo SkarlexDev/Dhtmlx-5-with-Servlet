@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<items>
+	<item type="settings" inputWidth="220" position="label-left"
+		labelWidth="90" />
+	<item type="label" label="Delete Timetable data" labelWidth="220" />
+	<item type="label" label="College" />
+	<item type="input" label="College" name="collegeName"
+		offsetLeft="15" required="true" />
+	<item type="input" label="Study Year" name="studyYear"
+		offsetLeft="15" required="true" />
+	<item type="label" label="Date" />
+	<item type="select" label="Select Day" offsetLeft="15" name="day"
+		required="true">
+		<option text="Monday" value="Monday" />
+		<option text="Tuesday" value="Tuesday" />
+		<option text="Wednesday" value="Wednesday" />
+		<option text="Thursday" value="Thursday" />
+		<option text="Friday" value="Friday" />
+	</item>
+	<item type="input" label="Start Time" name="startTime"
+		offsetLeft="15" value="00:00" maxLength="5" required="true" />
+	<item type="button" value="Delete" offsetTop="15" offsetLeft="230" />
+</items>

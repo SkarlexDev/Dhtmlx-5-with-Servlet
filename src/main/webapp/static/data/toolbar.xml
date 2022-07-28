@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<toolbar>
+	<item id="home" type="button" img="home_2.png" text="Home"/>
+    <item id="refresh" type="button" img="refresh.png" text="Refresh"/>
+    <item id="newCollege" type="button" img="plus.png" text="New College"/>
+    <item id="logout" type="button" img="logout.png" text="Logout"/>
+</toolbar>

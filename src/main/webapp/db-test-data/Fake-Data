@@ -1,0 +1,183 @@
+-- Table: public.college
+
+-- DROP TABLE IF EXISTS public.college;
+
+CREATE TABLE IF NOT EXISTS public.college
+(
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    college_name character varying(255) COLLATE pg_catalog."default",
+    years bigint,
+    CONSTRAINT college_pkey PRIMARY KEY (id),
+    CONSTRAINT college_name_unique UNIQUE (college_name)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.college
+    OWNER to postgres;
+    
+    -- Table: public.time_table
+
+-- DROP TABLE IF EXISTS public.time_table;
+
+CREATE TABLE IF NOT EXISTS public.time_table
+(
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    study_year bigint,
+    college_id bigint NOT NULL,
+    CONSTRAINT time_table_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_time_table__college_id FOREIGN KEY (college_id)
+        REFERENCES public.college (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.time_table
+    OWNER to postgres;
+    
+  
+-- Table: public.data_table
+
+-- DROP TABLE IF EXISTS public.data_table;
+
+CREATE TABLE IF NOT EXISTS public.data_table
+(
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    day_name character varying(255) COLLATE pg_catalog."default",
+    subject character varying(255) COLLATE pg_catalog."default",
+    teacher character varying(255) COLLATE pg_catalog."default",
+    building character varying COLLATE pg_catalog."default",
+    room character varying COLLATE pg_catalog."default",
+    start_time character varying COLLATE pg_catalog."default",
+    end_time character varying COLLATE pg_catalog."default",
+    subject_type character varying COLLATE pg_catalog."default",
+    time_table bigint NOT NULL,
+    CONSTRAINT data_table_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_data_table__time_table FOREIGN KEY (time_table)
+        REFERENCES public.time_table (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.data_table
+    OWNER to postgres;
+    
+    
+    
+ -- Table: public.user
+
+-- DROP TABLE IF EXISTS public."user";
+
+CREATE TABLE IF NOT EXISTS public."user"
+(
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    user_name character varying COLLATE pg_catalog."default",
+    password character varying COLLATE pg_catalog."default",
+    CONSTRAINT user_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."user"
+    OWNER to postgres;
+    
+
+-- Table: public.teachers
+
+-- DROP TABLE IF EXISTS public.teachers;
+
+CREATE TABLE IF NOT EXISTS public.teachers
+(
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    name character varying COLLATE pg_catalog."default",
+    CONSTRAINT teachers_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.teachers
+    OWNER to postgres;
+
+    
+insert into public.user (user_name, "password") VALUES ('admin', '2DACEEBC4E31654D326AE7889B397ED50FF7E5AFFF374D1F89525865FD87EFE0');
+
+INSERT INTO PUBLIC.teachers ("name") VALUES ('Mike H');
+INSERT INTO PUBLIC.teachers ("name") VALUES ('Veresa Gray');
+INSERT INTO PUBLIC.teachers ("name") VALUES ('Nikola White');
+INSERT INTO PUBLIC.teachers ("name") VALUES ('Edd Hold');
+INSERT INTO PUBLIC.teachers ("name") VALUES ('Veronica T');
+
+insert into public.college (college_name, years) VALUES ('Test', 2);
+
+insert into public.time_table (study_year, college_id) VALUES (1, '1');
+insert into public.time_table (study_year, college_id) VALUES (2, '1');
+
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Tuesday', 'Algebra', 'Nikola White', 'TH', '001', '16:00', '17:00', 'Course', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Thursday', 'Algebra', 'Nikola White', 'TH', '001', '16:00', '17:00', 'Course', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Monday', 'Amusements', 'Edd Hold', 'O', '201', '09:00', '11:00', 'Course', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Monday', 'Combinatorics', 'Veronica T', 'LK', '401', '12:00', '13:00', 'Laboratory', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Tuesday', 'Combinatorics', 'Veronica T', 'LK', '401', '12:00', '13:00', 'Laboratory', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Thursday', 'Combinatorics', 'Veronica T', 'LK', '451', '09:00', '11:00', 'Laboratory', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Wednesday', 'Algebra', 'Nikola White', 'TH', '001', '10:00', '11:00', 'Course', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Wednesday', 'Amusements', 'Edd Hold', 'O', '201', '09:00', '11:00', 'Course', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Wednesday', 'Combinatorics', 'Veronica T', 'LK', '401', '12:00', '13:00', 'Laboratory', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Tuesday', 'Algebra', 'Nikola White', 'TH', '001', '08:00', '09:00', 'Course', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Friday', 'Combinatorics', 'Veronica T', 'LK', '451', '09:00', '11:00', 'Laboratory', 1);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Monday', 'Algebra', 'Nikola White', 'TH', '001', '10:00', '11:00', 'Course', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Monday', 'Amusements', 'Edd Hold', 'O', '201', '09:00', '11:00', 'Course', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Monday', 'Combinatorics', 'Veronica T', 'LK', '401', '12:00', '13:00', 'Laboratory', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Tuesday', 'Combinatorics', 'Veronica T', 'LK', '401', '12:00', '13:00', 'Laboratory', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Thursday', 'Combinatorics', 'Veronica T', 'LK', '451', '09:00', '11:00', 'Laboratory', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Wednesday', 'Algebra', 'Alex Green', 'TH', '001', '10:00', '11:00', 'Course', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Wednesday', 'Amusements', 'Edd Hold', 'O', '201', '09:00', '11:00', 'Course', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Tuesday', 'Algebra', 'Nikola White', 'TH', '051', '10:00', '12:00', 'Course', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Friday', 'Combinatorics', 'Nikola WhiteT', 'K', '451', '15:00', '16:00', 'Laboratory', 2);
+
+INSERT INTO PUBLIC.DATA_TABLE (DAY_NAME,SUBJECT, teacher, building, room, start_time, end_time, subject_type, time_table)
+VALUES ('Friday', 'Amusements', 'Edd Hold', 'L', '201', '09:00', '11:00', 'Course', 2);
+    
+    
