@@ -4,4 +4,6 @@ import com.bean.User;
 
 public interface UserDao {
     public User findByUserNameAndPassword(String userName, String password);
+    
+    public User findById(Long id);
 }

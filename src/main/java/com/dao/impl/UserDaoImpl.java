@@ -34,4 +34,23 @@ public class UserDaoImpl implements UserDao {
         }
         return bean;
     }
+
+	@Override
+	public User findById(Long id) {
+		log.info("Request to find User from db");
+		String sql = "select * from public.user where id = ?";
+		User bean = null;
+		try (Connection conn = DbUtil.getConnection()) {
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()) {
+            	bean = new User();
+            }
+            DbUtil.closeConn(rs, st, conn);
+        } catch (ClassNotFoundException | SQLException e1) {
+            e1.printStackTrace();
+        }
+        return bean;
+	}
 }

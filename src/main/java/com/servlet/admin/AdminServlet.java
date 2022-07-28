@@ -19,6 +19,9 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         log.info("Verify if user can access admin page");
         HttpSession session = req.getSession(false);
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.setHeader("Pragma", "no-cache");
+        res.setDateHeader("Expires", 0);
         if (session != null) {
             User user = (User) session.getAttribute("user");
             if (user != null) {

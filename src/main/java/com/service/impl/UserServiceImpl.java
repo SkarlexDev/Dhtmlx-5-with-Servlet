@@ -11,14 +11,22 @@ import java.util.logging.Logger;
 
 public class UserServiceImpl implements UserService {
 
-    private final Logger log = Logger.getLogger(AdminServlet.class.getName());
+	private final Logger log = Logger.getLogger(AdminServlet.class.getName());
 
-    private final UserDao userDao = new UserDaoImpl();
+	private final UserDao userDao = new UserDaoImpl();
 
-    @Override
-    public User getByUserNameAndPassword(String userName, String password) {
-        log.info("Request to get user");
-        String encoded = PasswordUtil.hashPassword(password);
-        return userDao.findByUserNameAndPassword(userName, encoded);
-    }
+	@Override
+	public User getByUserNameAndPassword(String userName, String password) {
+		log.info("Request to get user");
+		String encoded = PasswordUtil.hashPassword(password);
+		return userDao.findByUserNameAndPassword(userName, encoded);
+	}
+
+	@Override
+	public boolean getUserByIDAccess(Long id) {
+		if (userDao.findById(id) == null) {
+			return false;
+		}
+		return true;
+	}
 }
