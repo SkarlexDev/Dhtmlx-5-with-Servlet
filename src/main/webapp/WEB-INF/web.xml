@@ -26,11 +26,6 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>doLogin</servlet-name>
-		<servlet-class>com.servlet.login.ProcessLoginServlet</servlet-class>
-	</servlet>
-
-	<servlet>
 		<servlet-name>doLogout</servlet-name>
 		<servlet-class>com.servlet.login.LogoutServlet</servlet-class>
 	</servlet>
@@ -41,18 +36,38 @@
 	</servlet>
 
 	<servlet>
+		<servlet-name>teacherFormManager</servlet-name>
+		<servlet-class>com.servlet.admin.TeacherFormManageServlet</servlet-class>
+	</servlet>
+
+	<servlet>
 		<servlet-name>add</servlet-name>
 		<servlet-class>com.servlet.admin.AddServlet</servlet-class>
 	</servlet>
 	
 	<servlet>
+		<servlet-name>addTeacher</servlet-name>
+		<servlet-class>com.servlet.admin.AddTeacherServlet</servlet-class>
+	</servlet>
+
+	<servlet>
 		<servlet-name>edit</servlet-name>
 		<servlet-class>com.servlet.admin.EditServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>editTeacher</servlet-name>
+		<servlet-class>com.servlet.admin.EditTeacherServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>delete</servlet-name>
 		<servlet-class>com.servlet.admin.DeleteServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>deleteTeacher</servlet-name>
+		<servlet-class>com.servlet.admin.DeleteTeacherServlet</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -86,11 +101,6 @@
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>doLogin</servlet-name>
-		<url-pattern>/doLogin</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
 		<servlet-name>doLogout</servlet-name>
 		<url-pattern>/doLogout</url-pattern>
 	</servlet-mapping>
@@ -99,20 +109,40 @@
 		<servlet-name>formManager</servlet-name>
 		<url-pattern>/formManager</url-pattern>
 	</servlet-mapping>
-	
+
+	<servlet-mapping>
+		<servlet-name>teacherFormManager</servlet-name>
+		<url-pattern>/teacherFormManager</url-pattern>
+	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>add</servlet-name>
 		<url-pattern>/add</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>
+		<servlet-name>addTeacher</servlet-name>
+		<url-pattern>/addTeacher</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
 		<servlet-name>edit</servlet-name>
 		<url-pattern>/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>editTeacher</servlet-name>
+		<url-pattern>/editTeacher</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>delete</servlet-name>
 		<url-pattern>/delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>deleteTeacher</servlet-name>
+		<url-pattern>/deleteTeacher</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>

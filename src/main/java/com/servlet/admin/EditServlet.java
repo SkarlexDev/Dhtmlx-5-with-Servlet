@@ -36,6 +36,7 @@ public class EditServlet extends HttpServlet {
 			}
 			res.setStatus(status);
 		} else {
+			log.info("Unauthorized user!");
 			res.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		}
 	}

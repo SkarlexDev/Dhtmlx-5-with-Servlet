@@ -20,9 +20,9 @@ public class CollegeDaoImpl implements CollegeDao {
     @Override
     public int save(College e) {
         log.info("Creating college: " + e.getCollegeName());
-        String insertCollegeSql = "insert into public.college (college_name, years) VALUES (?, ?);";
+        String sql = "insert into public.college (college_name, years) VALUES (?, ?);";
         try (Connection conn = DbUtil.getConnection()) {
-            PreparedStatement st = conn.prepareStatement(insertCollegeSql);
+            PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, e.getCollegeName());
             st.setInt(2, e.getYears());
             st.executeUpdate();

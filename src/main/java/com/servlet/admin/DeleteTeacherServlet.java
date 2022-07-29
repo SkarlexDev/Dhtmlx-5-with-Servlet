@@ -1,8 +1,12 @@
 package com.servlet.admin;
 
-import com.bean.Timetable;
-import com.service.TimeTableService;
-import com.service.impl.TimeTableServiceImpl;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Logger;
+
+import com.bean.Teacher;
+import com.service.TeacherService;
+import com.service.impl.TeacherServiceImpl;
 import com.util.BeanUtils;
 import com.util.SecuredUtil;
 
@@ -10,27 +14,23 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Logger;
-
-public class DeleteServlet extends HttpServlet {
+public class DeleteTeacherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private final Logger log = Logger.getLogger(DeleteServlet.class.getName());
 
-	private final TimeTableService timeTableService = new TimeTableServiceImpl();
+	private final TeacherService teacherService = new TeacherServiceImpl();
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		log.info("Request to delete timetable data");
+		log.info("Request to delete teacher ");
 		if (SecuredUtil.allow(req.getSession(false))) {
-			Timetable bean = new Timetable();
+			Teacher bean = new Teacher();
 			BeanUtils.populate(bean, req);
-			String collegeName = req.getParameter("collegeName");
-			int status = timeTableService.delete(bean, collegeName);
-			if (status == 404) {
+
+			int status = teacherService.delete(bean);
+			if (status == 409) {
 				PrintWriter out = res.getWriter();
-				out.print("Invalid record!");
+				out.print("Record already deleted!");
 			}
 			res.setStatus(status);
 		} else {
@@ -38,5 +38,4 @@ public class DeleteServlet extends HttpServlet {
 			res.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		}
 	}
-
 }

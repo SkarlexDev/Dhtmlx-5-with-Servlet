@@ -4,5 +4,8 @@
 	<item id="home" type="button" img="home_2.png" text="Home"/>
     <item id="refresh" type="button" img="refresh.png" text="Refresh"/>
     <item id="newCollege" type="button" img="plus.png" text="New College"/>
+    <item id="manageTimetable" type="button" img="timetable.png" text="Manage Timetable"/>
+    <item id="manageTeacher" type="button" img="teacher.png" text="Manage Teacher"/>
+    
     <item id="logout" type="button" img="logout.png" text="Logout"/>
 </toolbar>

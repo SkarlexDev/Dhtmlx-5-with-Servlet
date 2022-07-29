@@ -18,17 +18,20 @@ function postNewCollege(form) {
 	});
 }
 
-function postNewTimetableData(form) {
+function postManagedForm(form, id, tag) {
+	console.log(id);
 	$.ajax({
 		type: "POST",
-		url: "add",
+		url: id,
 		data: form,
 		success: () => {
 			dhtmlx.alert({
 				text: "Success!",
 				ok: "OK",
 				callback: () => {
-					treeEventInteract(form.studyYear + form.collegeName);
+					if (tag == "1") {
+						treeEventInteract(form.studyYear + form.collegeName);
+					}
 				}
 			});
 		},
@@ -38,19 +41,6 @@ function postNewTimetableData(form) {
 	});
 }
 
-function postEditTimetableData(form) {
-	$.ajax({
-		type: "POST",
-		url: "edit",
-		data: form,
-		success: () => {
-			treeEventInteract(form.studyYear + form.collegeName);
-		},
-		error: (a) => {
-			dhtmlx.alert("Status error: " + a.responseText);
-		}
-	});
-}
 
 function postDeletetTimetableData(form) {
 	$.ajax({

@@ -77,7 +77,9 @@ CREATE TABLE IF NOT EXISTS public."user"
     id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
     user_name character varying COLLATE pg_catalog."default",
     password character varying COLLATE pg_catalog."default",
-    CONSTRAINT user_pkey PRIMARY KEY (id)
+    access_token character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT user_pkey PRIMARY KEY (id),
+    CONSTRAINT access_token_unique UNIQUE (access_token)
 )
 
 TABLESPACE pg_default;
@@ -94,7 +96,8 @@ CREATE TABLE IF NOT EXISTS public.teachers
 (
     id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
     name character varying COLLATE pg_catalog."default",
-    CONSTRAINT teachers_pkey PRIMARY KEY (id)
+    CONSTRAINT teachers_pkey PRIMARY KEY (id),
+    CONSTRAINT teacher_name_unique UNIQUE (name)
 )
 
 TABLESPACE pg_default;
@@ -103,7 +106,7 @@ ALTER TABLE IF EXISTS public.teachers
     OWNER to postgres;
 
     
-insert into public.user (user_name, "password") VALUES ('admin', '2DACEEBC4E31654D326AE7889B397ED50FF7E5AFFF374D1F89525865FD87EFE0');
+insert into public.user (user_name, "password", "access_token") VALUES ('admin', '2DACEEBC4E31654D326AE7889B397ED50FF7E5AFFF374D1F89525865FD87EFE0', '0254hj6fgh5tr9ht41ddg');
 
 INSERT INTO PUBLIC.teachers ("name") VALUES ('Mike H');
 INSERT INTO PUBLIC.teachers ("name") VALUES ('Veresa Gray');

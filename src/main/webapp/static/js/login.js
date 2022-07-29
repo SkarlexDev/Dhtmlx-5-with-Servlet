@@ -1,7 +1,7 @@
 function doLogin(form){
 	$.ajax({
 		type: "POST",
-		url: "doLogin",
+		url: "login",
 		data: form,
 		success: () => {
 			location.href = "admin"

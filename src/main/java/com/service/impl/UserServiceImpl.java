@@ -23,10 +23,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean getUserByIDAccess(Long id) {
-		if (userDao.findById(id) == null) {
+	public boolean getUserByIDAndAccess(Long id, String token) {
+		if (userDao.findByIdAndToken(id,token) == null) {
 			return false;
 		}
 		return true;
-	}
+	}	
 }

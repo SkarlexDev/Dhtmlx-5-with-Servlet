@@ -14,7 +14,7 @@ public class SecuredUtil {
 		if (session != null) {
 			User user = (User) session.getAttribute("user");
 			if (user != null) {
-				return userService.getUserByIDAccess(user.getId());
+				return userService.getUserByIDAndAccess(user.getId(),user.getAccessToken());
 			}
 		}
 		return false;

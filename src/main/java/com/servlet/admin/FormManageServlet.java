@@ -18,7 +18,7 @@ public class FormManageServlet extends HttpServlet {
 
 	private final FormManageService formManageService = new FormManageServiceImpl();
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		log.info("Request to generate form manage xml");
 		if (SecuredUtil.allow(req.getSession(false))) {
 			res.setContentType("text/xml");
@@ -31,6 +31,7 @@ public class FormManageServlet extends HttpServlet {
 			}
 			res.getWriter().println(xml);
 		} else {
+			log.info("Unauthorized user!");
 			res.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		}
 	}
