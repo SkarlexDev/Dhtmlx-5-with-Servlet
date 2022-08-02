@@ -7,26 +7,24 @@ import com.service.UserService;
 import com.servlet.admin.AdminServlet;
 import com.util.PasswordUtil;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 public class UserServiceImpl implements UserService {
 
-	private final Logger log = Logger.getLogger(AdminServlet.class.getName());
+    private final Logger log = Logger.getLogger(AdminServlet.class.getName());
 
-	private final UserDao userDao = new UserDaoImpl();
+    private final UserDao userDao = new UserDaoImpl();
 
-	@Override
-	public User getByUserNameAndPassword(String userName, String password) {
-		log.info("Request to get user");
-		String encoded = PasswordUtil.hashPassword(password);
-		return userDao.findByUserNameAndPassword(userName, encoded);
-	}
+    @Override
+    public Optional<User> getByUserNameAndPassword(String userName, String password) {
+        log.info("Request to get user");
+        String encoded = PasswordUtil.hashPassword(password);
+        return userDao.findByUserNameAndPassword(userName, encoded);
+    }
 
-	@Override
-	public boolean getUserByIDAndAccess(Long id, String token) {
-		if (userDao.findByIdAndToken(id,token) == null) {
-			return false;
-		}
-		return true;
-	}	
+    @Override
+    public Optional<User> getUserByIDAndAccess(Long id, String token) {
+        return userDao.findByIdAndToken(id, token);
+    }
 }

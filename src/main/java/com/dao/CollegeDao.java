@@ -1,16 +1,18 @@
 package com.dao;
 
-import java.util.List;
-
 import com.bean.College;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface CollegeDao {
 
-    public int save(College e);
+    Optional<College> findByName(String name);
 
-    public List<College> findAll();
+    boolean save(College e);
 
-    public College findByName(String name);
+    List<College> findAll();
 
-    public List<String> findAllName();
+    List<String> findAllName();
+
 }

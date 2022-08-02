@@ -47,19 +47,19 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
     @Override
-    public int create(Timetable e, String name) {
+    public boolean create(Timetable e, String name) {
         log.info("Request to save Timetable and return status code");
         return timeTableDao.save(e, name);
     }
 
     @Override
-    public int delete(Timetable e, String collegeName) {
+    public boolean delete(Timetable e, String collegeName) {
         log.info("Request to delete Timetable and return status code");
         return timeTableDao.delete(e, collegeName);
     }
 
     @Override
-    public int update(Timetable bean, String collegeName, String oldStartTime) {
+    public boolean update(Timetable bean, String collegeName, String oldStartTime) {
         log.info("Request to update Timetable and return status code");
         return timeTableDao.update(bean, collegeName, oldStartTime);
     }

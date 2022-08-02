@@ -1,17 +1,20 @@
 package com.dao;
 
-import java.util.List;
-
 import com.bean.Teacher;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface TeacherDao {
 
-	public List<Teacher> findAll();
+    List<Teacher> findAll();
 
-	public int save(Teacher bean);
+    boolean save(Teacher bean);
 
-	public int update(Teacher bean, String oldName);
+    boolean update(Teacher bean, String oldName);
 
-	public int delete(Teacher bean);
+    boolean delete(Teacher bean);
+
+    Optional<Teacher> findByName(String name);
 
 }

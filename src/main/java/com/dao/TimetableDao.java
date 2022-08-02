@@ -1,16 +1,16 @@
 package com.dao;
 
-import java.util.List;
-
 import com.bean.Timetable;
+
+import java.util.List;
 
 public interface TimetableDao {
 
-    public int save(Timetable e, String collegeName);
+    boolean save(Timetable e, String collegeName);
 
-    public List<Timetable> findAllByCollegeAndYear(String collegeName, int year);
+    List<Timetable> findAllByCollegeAndYear(String collegeName, int year);
 
-    public int delete(Timetable e, String collegeName);
+    boolean delete(Timetable e, String collegeName);
 
-    public int update(Timetable e, String collegeName, String oldStartTime);
+    boolean update(Timetable e, String collegeName, String oldStartTime);
 }

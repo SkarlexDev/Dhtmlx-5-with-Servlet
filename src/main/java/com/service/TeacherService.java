@@ -4,11 +4,11 @@ import com.bean.Teacher;
 
 public interface TeacherService {
 
-	StringBuilder createXMLForm(String action);
+    StringBuilder createXMLForm(String action);
 
-	int create(Teacher bean);
+    boolean create(Teacher bean);
 
-	int update(Teacher bean, String oldName);
+    boolean update(Teacher bean, String oldName);
 
-	int delete(Teacher bean);
+    boolean delete(Teacher bean);
 }

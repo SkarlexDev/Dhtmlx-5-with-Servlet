@@ -2,10 +2,12 @@ package com.service;
 
 import com.bean.College;
 
+import java.util.Optional;
+
 public interface CollegeService {
 
-    public int create(College e);
+    boolean create(College e);
 
-    public College findByName(String name);
+    Optional<College> findByName(String name);
 
 }

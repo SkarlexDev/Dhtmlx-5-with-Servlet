@@ -2,8 +2,11 @@ package com.dao;
 
 import com.bean.User;
 
+import java.util.Optional;
+
 public interface UserDao {
-    public User findByUserNameAndPassword(String userName, String password);
-    
-    public User findByIdAndToken(Long id, String token);
+
+    Optional<User> findByUserNameAndPassword(String userName, String password);
+
+    Optional<User> findByIdAndToken(Long id, String token);
 }

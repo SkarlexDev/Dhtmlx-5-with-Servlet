@@ -2,7 +2,10 @@ package com.service;
 
 import com.bean.User;
 
+import java.util.Optional;
+
 public interface UserService {
-    public User getByUserNameAndPassword(String userName, String password);
-    public boolean getUserByIDAndAccess(Long id, String token);
+    Optional<User> getByUserNameAndPassword(String userName, String password);
+
+    Optional<User> getUserByIDAndAccess(Long id, String token);
 }

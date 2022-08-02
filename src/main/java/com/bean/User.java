@@ -34,11 +34,16 @@ public class User {
         this.password = password;
     }
 
-	public String getAccessToken() {
-		return accessToken;
-	}
+    public String getAccessToken() {
+        return accessToken;
+    }
 
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
-	}
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", userName=" + userName + ", accessToken=" + accessToken + "]";
+    }
 }

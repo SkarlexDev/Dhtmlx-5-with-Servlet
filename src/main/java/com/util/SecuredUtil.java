@@ -1,5 +1,7 @@
 package com.util;
 
+import java.util.Optional;
+
 import com.bean.User;
 import com.service.UserService;
 import com.service.impl.UserServiceImpl;
@@ -14,7 +16,8 @@ public class SecuredUtil {
 		if (session != null) {
 			User user = (User) session.getAttribute("user");
 			if (user != null) {
-				return userService.getUserByIDAndAccess(user.getId(),user.getAccessToken());
+				Optional<User> admin = userService.getUserByIDAndAccess(user.getId(),user.getAccessToken());
+				return admin.isPresent();
 			}
 		}
 		return false;

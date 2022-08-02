@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 public class TimeTableServlet extends HttpServlet {
@@ -25,12 +25,10 @@ public class TimeTableServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         log.info("Request to generate college Timetable view from db");
         String name = req.getParameterNames().nextElement();
-        College bean = collegeService.findByName(name);
-        PrintWriter out = res.getWriter();
+        Optional<College> bean = collegeService.findByName(name);
         name = name.replaceAll("\\D", "");
-        if (name.equals("")) {
-            return;
+        if (bean.isPresent() && !name.equals("")) {
+            res.getWriter().println(timeTableService.generateTable(bean.get().getCollegeName(), Integer.parseInt(name)));
         }
-        out.println(timeTableService.generateTable(bean.getCollegeName(), Integer.parseInt(name)));
     }
 }

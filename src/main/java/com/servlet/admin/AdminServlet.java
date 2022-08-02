@@ -44,7 +44,5 @@ public class AdminServlet extends HttpServlet {
         } else {
             res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
-
     }
-
 }

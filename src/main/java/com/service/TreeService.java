@@ -1,12 +1,12 @@
 package com.service;
 
-import java.util.List;
-
 import com.bean.College;
+
+import java.util.List;
 
 public interface TreeService {
 
-    public StringBuilder createXmlTree();
+    StringBuilder createXmlTree();
 
-    public List<College> getAllCollege();
+    List<College> getAllCollege();
 }

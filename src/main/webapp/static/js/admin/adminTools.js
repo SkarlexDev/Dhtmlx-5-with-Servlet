@@ -19,7 +19,6 @@ function postNewCollege(form) {
 }
 
 function postManagedForm(form, id, tag) {
-	console.log(id);
 	$.ajax({
 		type: "POST",
 		url: id,
