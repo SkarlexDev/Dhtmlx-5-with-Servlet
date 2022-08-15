@@ -51,7 +51,6 @@ public class LoginServlet extends HttpServlet {
             } else {
                 session = req.getSession(true);
                 session.setAttribute("user", admin.get());
-                req.getRequestDispatcher("admin").forward(req, res);
             }
         }
     }
